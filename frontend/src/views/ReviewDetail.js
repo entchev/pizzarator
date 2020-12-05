@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import reviews from '../reviews'
-import Map from '../components/Map'
-
-
+// import Map from '../components/Map'
 
 const ReviewDetail = ({ match }) => {
   const review = reviews.find((r) => r._id === match.params.id)
@@ -16,13 +14,20 @@ const ReviewDetail = ({ match }) => {
         Back to Home
       </Link>
       <Row>
-        <Col md={6}>
+        <Col md={4}>
           <Image src={review.image} alt={review.name} fluid></Image>
         </Col>
         <Col md={3}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h3>{review.name}</h3>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Row>
+                <Col>
+                  Price: <strong>${review.price}</strong>
+                </Col>
+              </Row>
             </ListGroup.Item>
             <ListGroup.Item>
               <Rating
@@ -42,30 +47,22 @@ const ReviewDetail = ({ match }) => {
             )}
           </ListGroup>
         </Col>
-        <Col md={3}>
+        <Col md={5}>
           <Card>
             <ListGroup variant='flush'>
               <ListGroup.Item>
                 <Row>
-                  <Col>Price:</Col>
                   <Col>
-                    <strong>${review.price}</strong>
+                    Pizzeria: <strong> {review.pizzeria}</strong>{' '}
                   </Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
-                  <Col>Pizzeria:</Col>
-                  <Col>{review.pizzeria}</Col>
-                </Row>
-              </ListGroup.Item>
-
-              <ListGroup.Item>
-                <Row>
-                  <Col>Location:</Col>
+                  <Col>Location: {review.location}</Col>
                   <Col>
-                    <Map />
+                    {/* <Map postcode={review.postcode}/> */}
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -73,7 +70,7 @@ const ReviewDetail = ({ match }) => {
           </Card>
         </Col>
       </Row>
-    </>
+    </> 
   )
 }
 

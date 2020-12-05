@@ -4,20 +4,34 @@ import {
   GoogleMap,
   useLoadScript,
   Marker,
-  InforWindow,
+  InfoWindow,
 } from '@react-google-maps/api'
 
 const libraries = ['places']
 const mapContainerStyle = {
-  width: '20vw',
-  height: '20vh',
+  width: '28vw',
+  height: '44vh',
 }
 const center = {
   lat: 51.507351,
   lng: -0.127758,
 }
 
-const Map = () => {
+const onLoad = (marker) => {
+  console.log('marker: ', marker)
+}
+
+// const position = {
+//   lat: 51.582761,
+//   lng: -0.02912,
+// }
+
+const options = {
+  disableDefaultUI: true,
+  zoomControl: true,
+}
+
+const Map = ({ postcode }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: creds.GOOGLE_MAPS_API_KEY,
     libraries,
@@ -26,13 +40,39 @@ const Map = () => {
   if (loadError) return 'Error loading maps'
   if (!isLoaded) return 'Loading Maps'
 
+  var position 
+
+  fetch(`http://api.postcodes.io/postcodes/${postcode}`)
+    .then((response) => response.json())
+    .then(
+      (data) =>
+        (position = {
+          lat: data.result.latitude,
+          lng: data.result.longitude,
+        })
+    )
+    .then(() => console.log(obj))
+    
+    
+    console.log(position)
+
   return (
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={8}
+        zoom={10}
         center={center}
-      ></GoogleMap>
+        options={options}
+      >
+        <Marker
+          onLoad={onLoad}
+          position={position}
+          icon={{
+            url: '/images/pizza_ico.svg',
+            scaledSize: new window.google.maps.Size(30, 30),
+          }}
+        />
+      </GoogleMap>
     </div>
   )
 }
