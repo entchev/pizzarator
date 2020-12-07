@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import reviews from '../reviews'
 // import Map from '../components/Map'
+import axios from 'axios'
 
 const ReviewDetail = ({ match }) => {
-  const review = reviews.find((r) => r._id === match.params.id)
+  const [review, setReview] = useState({})
 
-  return (
+  useEffect(() => {
+    const fetchReview = async () => {
+      const { data } = await axios.get(`/api/reviews/${match.params.id}`)
+
+      setReview(data)
+    }
+
+    fetchReview()
+  }, [match])
+
+  return (  
     <>
       <Link className='btn btn-dark my-3' to='/'>
         Back to Home
@@ -62,7 +72,7 @@ const ReviewDetail = ({ match }) => {
                 <Row>
                   <Col>Location: {review.location}</Col>
                   <Col>
-                    {/* <Map postcode={review.postcode}/> */}
+                    {/* <Map postcode={review.postcode} /> */}
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -70,7 +80,7 @@ const ReviewDetail = ({ match }) => {
           </Card>
         </Col>
       </Row>
-    </> 
+    </>
   )
 }
 

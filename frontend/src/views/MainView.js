@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import reviews from '../reviews'
 import Review from '../components/Review'
+import axios from 'axios'
 
 const MainView = () => {
+  const [reviews, setReviews] = useState([])
+
+  useEffect(() => {
+      const fetchReviews = async () => {
+          const { data } = await axios.get('/api/reviews')
+
+          setReviews(data)
+      }
+      fetchReviews()
+
+  }, [])
+
+
   return (
     <>
       <h1>Latest Reviews</h1>

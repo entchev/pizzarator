@@ -1,5 +1,6 @@
 import React from 'react'
-import creds from '../creds'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import {
   GoogleMap,
   useLoadScript,
@@ -17,10 +18,6 @@ const center = {
   lng: -0.127758,
 }
 
-const onLoad = (marker) => {
-  console.log('marker: ', marker)
-}
-
 // const position = {
 //   lat: 51.582761,
 //   lng: -0.02912,
@@ -32,35 +29,43 @@ const options = {
 }
 
 const Map = ({ postcode }) => {
+  const [position, setPosition] = useState({})
+
+  useEffect(() => {
+    const fetchPosition = async () => {
+      const { data } = await axios.get(
+        `http://api.postcodes.io/postcodes/${postcode}`
+      )
+
+      let temp = {
+        lat: data.result.latitude,
+        lng: data.result.longitude,
+      }
+
+      setPosition(temp)
+    }
+
+    fetchPosition()
+  }, [postcode])
+
+  const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: creds.GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
     libraries,
   })
 
   if (loadError) return 'Error loading maps'
   if (!isLoaded) return 'Loading Maps'
 
-  var position 
-
-  fetch(`http://api.postcodes.io/postcodes/${postcode}`)
-    .then((response) => response.json())
-    .then(
-      (data) =>
-        (position = {
-          lat: data.result.latitude,
-          lng: data.result.longitude,
-        })
-    )
-    .then(() => console.log(obj))
-    
-    
-    console.log(position)
+  const onLoad = (marker) => {
+    console.log('marker: ', marker)
+  }
 
   return (
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={11}
         center={center}
         options={options}
       >

@@ -1,6 +1,6 @@
 const reviews = [
   {
-    _id: '1',
+    _id: "1",
     name: 'Truffle Mushroom',
     image: '/images/truffle_mushroom_pizza.jpg',
     ingredients:
@@ -15,7 +15,7 @@ const reviews = [
     vegetarian: true,
   },
   {
-    _id: '2',
+    _id: "2",
     name: "Enzo Coccia's Guest Pizza",
     image: '/images/enzo_cocias.jpg',
     ingredients:
