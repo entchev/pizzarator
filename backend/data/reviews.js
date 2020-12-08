@@ -1,21 +1,20 @@
 const reviews = [
   {
-    _id: "1",
     name: 'Truffle Mushroom',
     image: '/images/truffle_mushroom_pizza.jpg',
     ingredients:
       'Agerola fior di latte cheese, white truffle cream, mushrooms, pecorino Romano D.O.P. cheese, shaved black truffle, basil, black truffle extra virgin olive oil',
     pizzeria: "L'Antica Pizzeria da Michele",
-    location: '44 OLD COMPTON STREET, W1D 4TY, LONDON',
+    location: '44 Old Compton Street, W1D 4TY, London',
     postcode: 'W1D 4TY',
     price: 24.95,
     reviewer: 'Andreas Snider',
     rating: 4.8,
     numReviews: 12,
+    comment: 'The Pizza was the best I ever had!',
     vegetarian: true,
   },
   {
-    _id: "2",
     name: "Enzo Coccia's Guest Pizza",
     image: '/images/enzo_cocias.jpg',
     ingredients:
@@ -26,11 +25,11 @@ const reviews = [
     price: 8.95,
     reviewer: 'Rosa Moreno',
     rating: 4.5,
+    comment: 'Amazing place, loved it!',
     numReviews: 8,
     vegetarian: false,
   },
   {
-    _id: '3',
     name: 'Full Moon',
     image: '/images/voodoo.jpeg',
     ingredients:
@@ -41,11 +40,11 @@ const reviews = [
     price: 9.99,
     reviewer: 'Ifan Barber',
     rating: 3,
+    comment: null,
     numReviews: 12,
     vegetarian: false,
   },
   {
-    _id: '4',
     name: 'Amerigo Vespucci',
     image: '/images/antica.jpg',
     ingredients:
@@ -55,12 +54,12 @@ const reviews = [
     postcode: 'NW3 1DN',
     price: 12.95,
     reviewer: 'Sumayya Southern',
+    comment: null,
     rating: 5,
     numReviews: 12,
     vegetarian: true,
   },
   {
-    _id: '5',
     name: 'Toscana',
     image: '/images/santore.jpg',
     ingredients: 'Tomato, mozzarella, salami, peppers & artichokes',
@@ -69,12 +68,12 @@ const reviews = [
     postcode: 'EC1R 4QL',
     price: 10.85,
     reviewer: 'Lynsey Mcgowan',
-    rating: 3.9,
+    comment: null,
+    rating: 2,
     numReviews: 10,
     vegetarian: false,
   },
   {
-    _id: '6',
     name: 'The 8 Cheese',
     image: '/images/pilgrims.jpg',
     ingredients:
@@ -84,6 +83,7 @@ const reviews = [
     postcode: 'W1D 3RP',
     price: 10.5,
     reviewer: 'Helena Cortez',
+    comment: null,
     rating: 4,
     numReviews: 12,
     vegetarian: true,

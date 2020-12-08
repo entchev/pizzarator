@@ -13,3 +13,8 @@ h3 {
 .reviewer {
   font-size: 12px;
 }
+
+.comment {
+  font-style: italic;
+  font-size: 16px;
+}
