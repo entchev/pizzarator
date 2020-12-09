@@ -12,7 +12,7 @@ import {
 import { fetchCoords } from '../actions/mapActions'
 import creds from '../temp_creds'
 
-const GOOGLE_MAPS_API_KEY = creds.GOOGLE_MAPS_API_KEY
+const GOOGLE_MAPS_API_KEY = creds.GMAPS_API_KEY
 
 const libraries = ['places']
 const mapContainerStyle = {
@@ -31,14 +31,15 @@ const options = {
 const Map = ({ postcode }) => {
   const dispatch = useDispatch()
 
-  const coordsList = useSelector((state) => state.coords)
-  console.log(`this is coordsList - ${coordsList}`)
-  const { loading, error, coords } = coordsList
-  console.log(`this is coords - ${coords}`)
+  const payload = useSelector((state) => state.coords)
+
+  const { loading, error, success, mapData } = payload
 
   useEffect(() => {
     dispatch(fetchCoords(postcode))
   }, [dispatch, postcode])
+
+  console.log(`initial position is ${mapData}`)
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
@@ -54,48 +55,29 @@ const Map = ({ postcode }) => {
 
   return (
     <div>
-      {/* <h1>
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant='danger'>{error}</Message>
-        ) : (
-          <h3>
-            {coords.map((coord) => (
-                console.log(coord)
-            ))}
-          </h3>
-        )}
-      </h1> */}
-      {/* <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={11}
-        center={center}
-        options={options}
-      >
-        <Marker
-          onLoad={onLoad}
-          position={coordsList}
-          icon={{
-            url: '/images/pizza_ico.svg',
-            scaledSize: new window.google.maps.Size(30, 30),
-          }}
-        />
-      </GoogleMap> */}
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          zoom={11}
+          center={center}
+          options={options}
+        >
+          <Marker
+            onLoad={onLoad}
+            position={mapData.position}
+            icon={{
+              url: '/images/pizza_ico.svg',
+              scaledSize: new window.google.maps.Size(30, 30),
+            }}
+          />
+        </GoogleMap>
+      )}
     </div>
   )
 }
 
 export default Map
-
-// JUST IN CASE
-
-//   let temp = {
-//     lat: data.result.latitude,
-//     lng: data.result.longitude,
-//   }
-
-// const position = {
-//   lat: 51.582761,
-//   lng: -0.02912,
-//

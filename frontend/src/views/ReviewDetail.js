@@ -6,7 +6,7 @@ import Rating from '../components/Rating'
 import Message from '../components/message'
 import Loader from '../components/loader'
 import { listReviewDetails } from '../actions/reviewActions'
-// import Map from '../components/Map'
+import Map from '../components/Map'
 
 const ReviewDetail = ({ match }) => {
   const dispatch = useDispatch()
@@ -90,7 +90,9 @@ const ReviewDetail = ({ match }) => {
                       Location: {review.location}
                       <br></br>
                     </Col>
-                    {/* <Col><Map postcode={review.postcode} /></Col> */}
+                    <Col>
+                      <Map postcode={review.postcode} />
+                    </Col>
                   </Row>
                 </ListGroup.Item>
               </ListGroup>

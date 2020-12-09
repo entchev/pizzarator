@@ -15,7 +15,12 @@ export const fetchCoords = (postcode) => async (dispatch) => {
 
     dispatch({
       type: FETCH_COORDS_SUCCESS,
-      payload: data,
+      payload: {
+        position: {
+          lat: data.result.latitude,
+          lng: data.result.longitude,
+        },
+      },
     })
   } catch (error) {
     dispatch({
