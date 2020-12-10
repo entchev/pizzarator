@@ -51,7 +51,7 @@ const ReviewDetail = ({ match }) => {
               <ListGroup.Item>
                 <Row>
                   <Col>
-                    Price: <strong>${review.price}</strong>
+                    Price: <strong>£{review.price}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -61,7 +61,9 @@ const ReviewDetail = ({ match }) => {
                   text={`${review.numReviews} reviews`}
                 ></Rating>
               </ListGroup.Item>
-              <ListGroup.Item>Ingredients: {review.ingredients}</ListGroup.Item>
+              <ListGroup.Item>
+                Ingredients: <i>{review.ingredients}</i>{' '}
+              </ListGroup.Item>
               {review.vegetarian ? (
                 <ListGroup.Item>
                   {' '}
@@ -86,12 +88,15 @@ const ReviewDetail = ({ match }) => {
 
                 <ListGroup.Item>
                   <Row>
-                    <Col>
-                      Location: {review.location}
-                      <br></br>
+                    <Col className='location-row'>
+                      Location: <strong>{review.location}</strong>
                     </Col>
                     <Col>
-                      <Map postcode={review.postcode} />
+                      <Map
+                        postcode={review.postcode}
+                        logo={review.logo}
+                        website={review.website}
+                      />
                     </Col>
                   </Row>
                 </ListGroup.Item>

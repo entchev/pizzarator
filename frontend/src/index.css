@@ -3,7 +3,7 @@ main {
 }
 
 h3 {
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .rating {
@@ -17,4 +17,21 @@ h3 {
 .comment {
   font-style: italic;
   font-size: 16px;
+}
+
+.location-row {
+  padding-bottom: 15px;
+}
+
+.map-marker {
+  color: black;
+}
+
+.map-logo-image {
+  width: 100px;
+  height: 80px;
+}
+
+.map-link {
+  font-weight: 600;
 }

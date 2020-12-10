@@ -5,6 +5,11 @@ const reviewSchema = mongoose.Schema(
     name: { type: String, required: true },
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
   },
   {
     timestamps: true,
@@ -25,6 +30,14 @@ const reviewsSchema = mongoose.Schema(
     image: {
       type: String,
       required: true,
+    },
+    logo: {
+      type: String,
+      required: false,
+    },
+    website: {
+      type: String,
+      required: false,
     },
     pizzeria: {
       type: String,

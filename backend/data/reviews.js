@@ -2,6 +2,8 @@ const reviews = [
   {
     name: 'Truffle Mushroom',
     image: '/images/truffle_mushroom_pizza.jpg',
+    logo: '/images/antica_logo.webp',
+    website: 'https://www.anticapizzeriadamichele.co.uk/',
     ingredients:
       'Agerola fior di latte cheese, white truffle cream, mushrooms, pecorino Romano D.O.P. cheese, shaved black truffle, basil, black truffle extra virgin olive oil',
     pizzeria: "L'Antica Pizzeria da Michele",
@@ -17,6 +19,8 @@ const reviews = [
   {
     name: "Enzo Coccia's Guest Pizza",
     image: '/images/enzo_cocias.jpg',
+    logo: '/images/enzo_logo.svg',
+    website: 'https://www.francomanca.co.uk/',
     ingredients:
       'Traditional Neapolitan pork salami, wild broccoli, San Marzano tomato, DOP and British mozzarella',
     pizzeria: 'Franco Manca',
@@ -32,6 +36,8 @@ const reviews = [
   {
     name: 'Full Moon',
     image: '/images/voodoo.jpeg',
+    logo: '/images/vrays_logo.jpg',
+    website: 'https://voodoorays.com/',
     ingredients:
       'Bacon dust Japanese mayo, mozzarella, tomato sauce, vine tomatoes',
     pizzeria: "Voodoo Ray's",
@@ -47,6 +53,8 @@ const reviews = [
   {
     name: 'Amerigo Vespucci',
     image: '/images/antica.jpg',
+    logo: '/images/antica_logo.png',
+    website: 'http://www.anticapizzeria.co.uk/',
     ingredients:
       'Tomato, mozzarella di bufala D.O.P, mushrooms, parmesan shaved, fresh basil, truffle oil.',
     pizzeria: 'L’Antica Pizzeria',
@@ -62,6 +70,8 @@ const reviews = [
   {
     name: 'Toscana',
     image: '/images/santore.jpg',
+    logo: '/images/santore_logo.png',
+    website: 'https://www.santorerestaurant.london/',
     ingredients: 'Tomato, mozzarella, salami, peppers & artichokes',
     pizzeria: 'Santore',
     location: '59-61 Exmouth Market, EC1R 4QL',
@@ -76,6 +86,8 @@ const reviews = [
   {
     name: 'The 8 Cheese',
     image: '/images/pilgrims.jpg',
+    logo: '/images/pilgrims_logo.png',
+    website: 'https://www.pizzapilgrims.co.uk/',
     ingredients:
       'A ricotta base with fior di latte, buffalo mozzarella, Grana Padana, smoked provola, Gorgonzola, Parmesan shavings, our house pulled stracciatella mozzarella and finished with smoked chilli jam.',
     pizzeria: 'Pizza Pilgrims',
@@ -86,6 +98,40 @@ const reviews = [
     comment: null,
     rating: 4,
     numReviews: 12,
+    vegetarian: true,
+  },
+  {
+    name: 'Jon Bon Chovy',
+    image: '/images/sodo_pizza.jpg',
+    logo: '/images/sodo_logo.png',
+    website: 'https://www.sodopizza.co.uk/',
+    ingredients:
+      'Tomato, mozzarella, anchovies, capers, olives, chillies & fresh parsley',
+    pizzeria: 'Sodo Pizza Café​',
+    location: '63 Pitfield Street, Hoxton, N1 6BU',
+    postcode: 'N1 6BU',
+    price: 12,
+    reviewer: 'John Smith',
+    comment: null,
+    rating: 4,
+    numReviews: 3,
+    vegetarian: false,
+  },
+  {
+    name: 'Robert De Nitro',
+    image: '/images/circolo.jpg',
+    logo: '/images/circolo_logo.png',
+    website: 'https://www.bigmammagroup.com/en/trattorias/circolo-popolare',
+    ingredients:
+      'Mozzarella fior di latte, salsiccia piccante, nduja, ricotta di bufala, crispy red onion',
+    pizzeria: 'Circolo Popolare',
+    location: '40-41 Rathbone Place, W1T 1HX',
+    postcode: 'W1T 1HX',
+    price: 14,
+    reviewer: 'Paul Okenfold',
+    comment: null,
+    rating: 3,
+    numReviews: 1,
     vegetarian: true,
   },
 ]

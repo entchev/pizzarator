@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import Message from '../components/message'
 import Loader from '../components/loader'
@@ -28,30 +28,27 @@ const options = {
   zoomControl: true,
 }
 
-const Map = ({ postcode }) => {
+const Map = ({ postcode, logo, website }) => {
   const dispatch = useDispatch()
 
   const payload = useSelector((state) => state.coords)
 
-  const { loading, error, success, mapData } = payload
+  const { loading, error, mapData } = payload
 
   useEffect(() => {
     dispatch(fetchCoords(postcode))
   }, [dispatch, postcode])
-
-  console.log(`initial position is ${mapData}`)
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
     libraries,
   })
 
+  const [selected, setSelected] = useState('')
+  //   const [markers, setMarkers] = useState([])
+
   if (loadError) return 'Error loading maps'
   if (!isLoaded) return 'Loading Maps'
-
-  const onLoad = (marker) => {
-    console.log('marker: ', marker)
-  }
 
   return (
     <div>
@@ -67,13 +64,34 @@ const Map = ({ postcode }) => {
           options={options}
         >
           <Marker
-            onLoad={onLoad}
             position={mapData.position}
             icon={{
               url: '/images/pizza_ico.svg',
               scaledSize: new window.google.maps.Size(30, 30),
             }}
+            onClick={() => setSelected(mapData.position)}
           />
+          {selected ? (
+            <InfoWindow
+              position={{ lat: selected.lat, lng: selected.lng }}
+              onCloseClick={() => {
+                setSelected(null)
+              }}
+            >
+              <div className='map-marker'>
+                <img
+                  className='map-logo-image'
+                  src={logo}
+                  alt='company logo'
+                ></img>
+                <p>
+                  <a className='map-link' href={website} target='_blank'>
+                    Visit their website
+                  </a>
+                </p>
+              </div>
+            </InfoWindow>
+          ) : null}
         </GoogleMap>
       )}
     </div>

@@ -18,7 +18,7 @@ const MainView = () => {
 
   return (
     <>
-      <h1>Latest Ratings</h1>
+      <h1>Latest Pizzas</h1>
       {loading ? (
         <Loader />
       ) : error ? (
