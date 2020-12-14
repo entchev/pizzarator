@@ -56,10 +56,7 @@ const ReviewDetail = ({ match }) => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Rating
-                  value={review.rating}
-                  text={`${review.numReviews} reviews`}
-                ></Rating>
+                <Rating value={review.rating}></Rating>
               </ListGroup.Item>
               <ListGroup.Item>
                 Ingredients: <i>{review.ingredients}</i>{' '}

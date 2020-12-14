@@ -8,6 +8,7 @@ import LoginView from './views/LoginView'
 import RegisterView from './views/RegisterView'
 import ReviewDetail from './views/ReviewDetail'
 import ProfileView from './views/ProfileView'
+import ReviewListView from './views/ReviewListView'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/profile' component={ProfileView} />
           <Route path='/' component={MainView} exact />
           <Route path='/review/:id' component={ReviewDetail} />
+          <Route path='/user/:id/reviewList' component={ReviewDetail} />
         </Container>
       </main>
       <Footer />

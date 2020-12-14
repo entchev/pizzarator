@@ -8,7 +8,7 @@ import {
 import { protect } from '../middleware/authMiddleware.js'
 
 router.route('/').get(getReviews)
-router.route('/:id/evaluations').post(protect, createEvaluation)
+router.route('/:id/evals').post(protect, createEvaluation)
 router.route('/:id').get(getReviewById)
 
 export default router

@@ -17,10 +17,7 @@ const Review = ({ review }) => {
           </Card.Title>
         </Link>
         <Card.Text as='div'>
-          <Rating
-            value={review.rating}
-            text={` ${review.numReviews} reviews`}
-          />
+          <Rating value={review.rating} />
         </Card.Text>
         <Card.Text className='reviewer'>
           Submitted by {review.reviewer}

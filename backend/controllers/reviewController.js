@@ -27,7 +27,7 @@ const getReviewById = asyncHandler(async (req, res) => {
 })
 
 // @desc create new evaluation
-// @route POST /api/reviews/:id/evaluations
+// @route POST /api/reviews/:id/evals
 // @access Private
 
 const createEvaluation = asyncHandler(async (req, res) => {
@@ -43,7 +43,7 @@ const createEvaluation = asyncHandler(async (req, res) => {
     if (alreadyEvaluated) {
       res.status(400)
       throw new Error('Pizza already reviewed')
-    }
+    }   
 
     const review = {
       name: req.user.name,

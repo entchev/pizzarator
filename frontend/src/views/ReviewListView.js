@@ -29,50 +29,66 @@ const ReviewListView = ({ history, match }) => {
     }
   }
 
+  const createReviewHandler = (review) => {
+    //   CREATE REVIEW
+  }
+
   return (
     <>
-    <Row className='align-items-center'>
+      <Row className='align-items-center'>
         <Col>
-            <h1>Reviews</h1>
+          <h1>Reviews</h1>
         </Col>
         <Col className='text-right'>
-            <Button className='my-3' onClick={createReviewHandler}>
-               <i className='fas fa-plus'></i> Create Review
-            </Button>
+          <Button className='my-3' onClick={createReviewHandler}>
+            <i className='fas fa-plus'></i> Create Review
+          </Button>
         </Col>
-    </Row>
-    {loading ? (
+      </Row>
+      {loading ? (
         <Loader />
-    ) : error ? (
+      ) : error ? (
         <Message variant='danger'>{error}</Message>
-    ) : (
+      ) : (
         <Table striped bordered hover responsive className='table-sm'>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>NAME</th>
-                    <th>PIZZERIA</th>
-                    <th>COMMENT</th>
-                    <th>RATING</th>
-                </tr>
-            </thead>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>PIZZERIA</th>
+              <th>COMMENT</th>
+              <th>RATING</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reviews.map((review) => {
+              ;<tr key={review._id}>
+                <td>{review._id}</td>
+                <td>{review.name}</td>
+                <td>{review.pizzeria}</td>
+                <td>{review.comment}</td>
+                <td>{review.rating}</td>
+                <td>
+                  <LinkContainer to={`/user/:id/reviewList/${review._id}/edit`}>
+                    <Button variant='light' className='btn-sm'>
+                      <i className='fas fa-edit'></i>
+                    </Button>
+                  </LinkContainer>
+                  <Button
+                    variant='danger'
+                    className='btn-sm'
+                    onClick={() => deleteHandler(review._id)}
+                  >
+                    <i className='fas fa-trash'></i>
+                  </Button>
+                </td>
+              </tr>
+            })}
+          </tbody>
         </Table>
-    )8
-    )}
-
-    
-    
+      )}
     </>
-
-
-
-
-
   )
-
-
-
-
 }
 
 export default ReviewListView
