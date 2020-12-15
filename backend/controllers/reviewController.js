@@ -26,6 +26,22 @@ const getReviewById = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc Delete a review
+// @route DELETE /api/reviews/:id
+// @access Private/Owner
+
+const deleteReview = asyncHandler(async (req, res) => {
+  const review = await Review.findById(req.params.id)
+
+  if (req.user._id === review.user._id) {
+    await review.remove()
+    res.json({ message: 'Review removed' })
+  } else {
+    res.status(404)
+    throw new Error('Review not found')
+  }
+})
+
 // @desc create new evaluation
 // @route POST /api/reviews/:id/evals
 // @access Private
@@ -43,7 +59,7 @@ const createEvaluation = asyncHandler(async (req, res) => {
     if (alreadyEvaluated) {
       res.status(400)
       throw new Error('Pizza already reviewed')
-    }   
+    }
 
     const review = {
       name: req.user.name,
@@ -68,4 +84,4 @@ const createEvaluation = asyncHandler(async (req, res) => {
   }
 })
 
-export { getReviews, getReviewById, createEvaluation }
+export { getReviews, getReviewById, createEvaluation, deleteReview }

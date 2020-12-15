@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   reviewListReducer,
   reviewDetailsReducer,
+  reviewCreateReducer,
 } from './reducers/reviewReducers'
 import { fetchCoordsReducer } from './reducers/mapReducer'
 import {
@@ -16,6 +17,7 @@ import {
 const reducer = combineReducers({
   reviewList: reviewListReducer,
   reviewDetails: reviewDetailsReducer,
+  reviewCreate: reviewCreateReducer,
   coords: fetchCoordsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

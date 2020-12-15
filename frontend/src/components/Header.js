@@ -33,7 +33,7 @@ const Header = () => {
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/users/reviews'>
+                  <LinkContainer to='/user/reviews'>
                     <NavDropdown.Item>My Reviews</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
@@ -41,7 +41,7 @@ const Header = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer to='/login'>
+                <LinkContainer to='/login'> 
                   <Nav.Link>
                     <i className='fas fa-user'></i> Sign in
                   </Nav.Link>
