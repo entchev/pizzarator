@@ -99,6 +99,6 @@ const ProfileView = ({ location, history }) => {
       </Col>
     </Row>
   )
-}
+} 
 
 export default ProfileView
