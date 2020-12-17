@@ -43,7 +43,7 @@ const ReviewListView = ({ history, match }) => {
     }
 
     if (successCreate) {
-      history.push(`/api/reviews/${createdReview._id}/edit`)
+      history.push(`/user/review/${createdReview._id}/edit`)
     } else {
       dispatch(listReviews())
     }
@@ -83,7 +83,6 @@ const ReviewListView = ({ history, match }) => {
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
             <tr>
-              <th>ID</th>
               <th>NAME</th>
               <th>PIZZERIA</th>
               <th>COMMENT</th>
@@ -91,9 +90,8 @@ const ReviewListView = ({ history, match }) => {
             </tr>
           </thead>
           <tbody>
-            {reviews.map((review) => {
-              ;<tr key={review._id}>
-                <td>{review._id}</td>
+            {reviews.map((review) => (
+              <tr key={review._id}>
                 <td>{review.name}</td>
                 <td>{review.pizzeria}</td>
                 <td>{review.comment}</td>
@@ -113,7 +111,7 @@ const ReviewListView = ({ history, match }) => {
                   </Button>
                 </td>
               </tr>
-            })}
+            ))}
           </tbody>
         </Table>
       )}

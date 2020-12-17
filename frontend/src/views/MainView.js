@@ -18,6 +18,11 @@ const MainView = () => {
 
   return (
     <>
+      <h4 className='welcome-text'>
+        Log in to submit your favorite pizza or comment on one of our top
+        choices
+      </h4>
+      <br></br>
       <h1>Latest Reviews</h1>
       {loading ? (
         <Loader />

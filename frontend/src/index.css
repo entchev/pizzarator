@@ -10,6 +10,11 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
+.welcome-text {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
 .reviewer {
   font-size: 12px;
 }

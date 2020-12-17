@@ -9,6 +9,7 @@ import RegisterView from './views/RegisterView'
 import ReviewDetail from './views/ReviewDetail'
 import ProfileView from './views/ProfileView'
 import ReviewListView from './views/ReviewListView'
+import ReviewEditView from './views/ReviewEditView'
 
 const App = () => {
   return (
@@ -19,9 +20,11 @@ const App = () => {
           <Route path='/login' component={LoginView} />
           <Route path='/register' component={RegisterView} />
           <Route path='/profile' component={ProfileView} />
-          <Route path='/' component={MainView} exact />
           <Route path='/review/:id' component={ReviewDetail} />
           <Route path='/user/:id/reviewList' component={ReviewDetail} />
+          <Route path='/user/reviewlist' component={ReviewListView} />
+          <Route path='/user/review/:id/edit' component={ReviewEditView} />
+          <Route path='/' component={MainView} exact />
         </Container>
       </main>
       <Footer />
