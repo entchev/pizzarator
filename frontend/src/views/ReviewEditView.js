@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/message'
 import Loader from '../components/loader'
 import FormContainer from '../components/FormContainer'
-import { listReviewDetails } from '../actions/reviewActions'
+import { listReviewDetails, updateReview } from '../actions/reviewActions'
+import { REVIEW_UPDATE_RESET } from '../constants/reviewConstants'
 
 const ReviewEditView = ({ history, match }) => {
   const reviewId = match.params.id
@@ -28,28 +29,56 @@ const ReviewEditView = ({ history, match }) => {
   const reviewDetails = useSelector((state) => state.reviewDetails)
   const { loading, error, review } = reviewDetails
 
+  const reviewUpdate = useSelector((state) => state.reviewUpdate)
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = reviewUpdate
+
   useEffect(() => {
-    if (!review.name || review._id !== reviewId) {
-      dispatch(listReviewDetails(reviewId))
+    if (successUpdate) {
+      dispatch({ type: REVIEW_UPDATE_RESET })
+      history.push('/user/reviewlist')
     } else {
-      setName(review.name)
-      setPizzeria(review.pizzeria)
-      setImage(review.image)
-      setLogo(review.logo)
-      setIngredients(review.ingredients)
-      setLocation(review.location)
-      setPostcode(review.postcode)
-      setRating(review.rating)
-      setPrice(review.price)
-      setComment(review.comment)
-      setVegetarian(review.vegetarian)
-      setWebsite(review.website)
+      if (!review.name || review._id !== reviewId) {
+        dispatch(listReviewDetails(reviewId))
+      } else {
+        setName(review.name)
+        setPizzeria(review.pizzeria)
+        setImage(review.image)
+        setLogo(review.logo)
+        setIngredients(review.ingredients)
+        setLocation(review.location)
+        setPostcode(review.postcode)
+        setRating(review.rating)
+        setPrice(review.price)
+        setComment(review.comment)
+        setVegetarian(review.vegetarian)
+        setWebsite(review.website)
+      }
     }
-  }, [dispatch, history, reviewId, review])
+  }, [dispatch, history, reviewId, review, successUpdate])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    // UPDATE REVIEW
+    dispatch(
+      updateReview({
+        _id: reviewId,
+        name,
+        pizzeria,
+        image,
+        logo,
+        ingredients,
+        location,
+        postcode,
+        rating,
+        price,
+        comment,
+        vegetarian,
+        website,
+      })
+    )
   }
 
   return (
@@ -59,6 +88,8 @@ const ReviewEditView = ({ history, match }) => {
       </Link>
       <FormContainer>
         <h1>Edit Review </h1>
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (

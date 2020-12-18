@@ -85,7 +85,12 @@ const Map = ({ postcode, logo, website }) => {
                   alt='company logo'
                 ></img>
                 <p>
-                  <a className='map-link' href={website} target='_blank'>
+                  <a
+                    className='map-link'
+                    href={website}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
                     Visit their website
                   </a>
                 </p>
