@@ -33,7 +33,7 @@ const getReviewById = asyncHandler(async (req, res) => {
 const deleteReview = asyncHandler(async (req, res) => {
   const review = await Review.findById(req.params.id)
 
-  if (req.user._id === review.user._id) {
+  if (review) {
     await review.remove()
     res.json({ message: 'Review removed' })
   } else {
@@ -48,19 +48,20 @@ const deleteReview = asyncHandler(async (req, res) => {
 
 const createReview = asyncHandler(async (req, res) => {
   const review = new Review({
-    name: 'Sample Pizza name',
+    name: 'Example Pizza',
     price: 0,
     user: req.user._id,
     image: '/images/sample_pizza.jpg',
     logo: '/images/sample_logo.jpg',
-    website: 'https://pizza.com',
-    ingredients: 'sample ingredients',
-    pizzeria: 'pizzeria name',
-    location: 'Abbey Wood',
-    postcode: 'SE2 0LA',
+    website: 'https://en.wikipedia.org/wiki/Pizza',
+    ingredients: 'Tomato sauce, Cheese, Peperoni',
+    pizzeria: "Bubbalio's",
+    location: 'Gloucester Square, London',
+    postcode: 'W2 2SZ',
     rating: 3,
-    comment: 'sample comment',
+    comment: 'Great tasting pizza!',
     vegetarian: false,
+    reviewer: req.user.name,
   })
 
   const createdReview = await review.save()
@@ -85,6 +86,7 @@ const updateReview = asyncHandler(async (req, res) => {
     rating,
     comment,
     vegetarian,
+    reviewer,
   } = req.body
 
   const review = await Review.findById(req.params.id)
@@ -102,6 +104,7 @@ const updateReview = asyncHandler(async (req, res) => {
     review.rating = rating
     review.comment = comment
     review.vegetarian = vegetarian
+    review.reviewer = reviewer
 
     const updatedReview = await review.save()
     res.json(updatedReview)

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
@@ -23,6 +24,8 @@ const ReviewEditView = ({ history, match }) => {
   const [comment, setComment] = useState('')
   const [vegetarian, setVegetarian] = useState(false)
   const [website, setWebsite] = useState('')
+  const [reviewer, setReviewer] = useState('')
+  const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -56,9 +59,33 @@ const ReviewEditView = ({ history, match }) => {
         setComment(review.comment)
         setVegetarian(review.vegetarian)
         setWebsite(review.website)
+        setReviewer(review.reviewer)
       }
     }
   }, [dispatch, history, reviewId, review, successUpdate])
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post('/api/upload', formData, config)
+
+      setImage(data)
+      setUploading(false)
+    } catch (error) {
+      console.error(error)
+      setUploading(false)
+    }
+  }
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -77,6 +104,7 @@ const ReviewEditView = ({ history, match }) => {
         comment,
         vegetarian,
         website,
+        reviewer,
       })
     )
   }
@@ -97,7 +125,7 @@ const ReviewEditView = ({ history, match }) => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Pizza Name</Form.Label>
               <Form.Control
                 type='name'
                 placeholder='Enter pizza name'
@@ -117,23 +145,41 @@ const ReviewEditView = ({ history, match }) => {
             </Form.Group>
 
             <Form.Group controlId='image'>
-              <Form.Label>Image</Form.Label>
+              <Form.Label>
+                Pizza Image (enter URL or click browse for a local file)
+              </Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter image url'
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
+              <Form.File
+                id='image-file'
+                label='Choose File'
+                custom
+                onChange={uploadFileHandler}
+              ></Form.File>
+              {uploading && <Loader />}
             </Form.Group>
 
             <Form.Group controlId='logo'>
-              <Form.Label>Logo</Form.Label>
+              <Form.Label>
+                Pizzeria Logo (enter URL or click browse for a local file)
+              </Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter logo url'
                 value={logo}
                 onChange={(e) => setLogo(e.target.value)}
               ></Form.Control>
+              <Form.File
+                id='image-file'
+                label='Choose File'
+                custom
+                onChange={uploadFileHandler}
+              ></Form.File>
+              {uploading && <Loader />}
             </Form.Group>
 
             <Form.Group controlId='ingredients'>
@@ -169,11 +215,18 @@ const ReviewEditView = ({ history, match }) => {
             <Form.Group controlId='rating'>
               <Form.Label>Rating</Form.Label>
               <Form.Control
-                type='number'
-                placeholder='Enter rating'
+                as='select'
+                className='mr-sm-2'
+                custom
                 value={rating}
                 onChange={(e) => setRating(e.target.value)}
-              ></Form.Control>
+              >
+                <option value='1'>One</option>
+                <option value='2'>Two</option>
+                <option value='3'>Three</option>
+                <option value='4'>Four</option>
+                <option value='5'>Five</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group controlId='price'>
@@ -187,7 +240,7 @@ const ReviewEditView = ({ history, match }) => {
             </Form.Group>
 
             <Form.Group controlId='comment'>
-              <Form.Label>Comment</Form.Label>
+              <Form.Label>Review text</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter comment'
@@ -199,11 +252,15 @@ const ReviewEditView = ({ history, match }) => {
             <Form.Group controlId='vegetarian'>
               <Form.Label>Vegetarian?</Form.Label>
               <Form.Control
-                type='text'
-                placeholder='Is the pizza vegetarian?'
+                as='select'
+                className='mr-sm-2'
+                custom
                 value={vegetarian}
                 onChange={(e) => setVegetarian(e.target.value)}
-              ></Form.Control>
+              >
+                <option value='true'>Yes</option>
+                <option value='false'>No</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group controlId='website'>

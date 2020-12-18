@@ -31,9 +31,11 @@ const Header = () => {
                   <LinkContainer to='/user/reviewlist'>
                     <NavDropdown.Item>My Reviews</NavDropdown.Item>
                   </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
+                  <LinkContainer to='/'>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </LinkContainer>
                 </NavDropdown>
               ) : (
                 <LinkContainer to='/login'>

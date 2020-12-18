@@ -75,6 +75,11 @@ const reviewSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    reviewer: {
+      type: String,
+      required: true,
+      default: 'John Doe',
+    },
     comments: [commentSchema],
   },
   {

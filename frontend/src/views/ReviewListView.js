@@ -35,6 +35,10 @@ const ReviewListView = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const reviewsFiltered = reviews.filter(
+    (review) => review.reviewer === userInfo.name
+  )
+
   useEffect(() => {
     dispatch({ type: REVIEW_CREATE_RESET })
 
@@ -79,6 +83,11 @@ const ReviewListView = ({ history, match }) => {
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
+      ) : reviewsFiltered.length < 1 ? (
+        <Message variant='secondary'>
+          You have no reviews yet. Click the "Create Review" button on
+          the right if you'd like to submit one.
+        </Message>
       ) : (
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
@@ -90,7 +99,7 @@ const ReviewListView = ({ history, match }) => {
             </tr>
           </thead>
           <tbody>
-            {reviews.map((review) => (
+            {reviewsFiltered.map((review) => (
               <tr key={review._id}>
                 <td>{review.name}</td>
                 <td>{review.pizzeria}</td>
