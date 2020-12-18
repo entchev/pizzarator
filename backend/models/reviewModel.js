@@ -3,11 +3,11 @@ import mongoose from 'mongoose'
 const commentSchema = mongoose.Schema(
   {
     name: { type: String, required: true },
-    rating: { type: Number, required: true },
-    comment: { type: String, required: true },
+    helpful: { type: Boolean, required: true },
+    content: { type: String, required: true },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      required: false,
       ref: 'User',
     },
   },
@@ -65,12 +65,17 @@ const reviewSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-    comment: {
+    description: {
       type: String,
       required: false,
       default: null,
     },
     rating: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    numComments: {
       type: Number,
       required: true,
       default: 0,

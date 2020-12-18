@@ -12,9 +12,11 @@ const reviews = [
     price: 24.95,
     reviewer: 'Andreas Snider',
     rating: 4.8,
-    comment:
+    description:
       'The Pizza at Michele was the best I ever had. Miles better than your average Pizza Hut type of establishment.',
     vegetarian: true,
+    numComments: 0,
+    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
   },
   {
     name: "Enzo Coccia's Guest Pizza",
@@ -29,9 +31,11 @@ const reviews = [
     price: 8.95,
     reviewer: 'Rosa Moreno',
     rating: 4.5,
-    comment:
+    description:
       'Excellent pizza. Menu is extensive and seasonal to a particularly high standard. Definitely fine dining. It can be expensive but worth it and they do different deals on different nights so it’s worth checking them out before you book. Highly recommended.',
     vegetarian: false,
+    numComments: 0,
+    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
   },
   {
     name: 'Full Moon',
@@ -46,9 +50,11 @@ const reviews = [
     price: 9.99,
     reviewer: 'Ifan Barber',
     rating: 3,
-    comment:
+    description:
       'Phenomenal experience. Top notch food, atmosphere, and wait staff. Have been here multiple times, and every time is an amazing experience all around. I always take my out of town guests here, as the food is always superb. Definitely a lifetime customer!',
     vegetarian: false,
+    numComments: 0,
+    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
   },
   {
     name: 'Amerigo Vespucci',
@@ -62,10 +68,12 @@ const reviews = [
     postcode: 'NW3 1DN',
     price: 12.95,
     reviewer: 'Sumayya Southern',
-    comment:
+    description:
       'Stopped in for dinner and had a great meal. Staff was helpful and knowledgeable about the menu offering great recommendations. The atmosphere is cozy and pleasant. The dishes were delicious as were the wine and cocktail recommendations.',
     rating: 5,
     vegetarian: true,
+    numComments: 0,
+    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
   },
   {
     name: 'Toscana',
@@ -78,10 +86,12 @@ const reviews = [
     postcode: 'EC1R 4QL',
     price: 10.85,
     reviewer: 'Lynsey Mcgowan',
-    comment:
+    description:
       'Outstanding meal here. I had the "Toscana" and I\'d certainly recommend it to anyone. The staff does an amazing job of describing anything on the menu and the ambiance is very cool. Can’t wait to come back!',
     rating: 4,
     vegetarian: false,
+    numComments: 0,
+    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
   },
   {
     name: 'The 8 Cheese',
@@ -95,10 +105,12 @@ const reviews = [
     postcode: 'W1D 3RP',
     price: 10.5,
     reviewer: 'Helena Cortez',
-    comment:
+    description:
       'Amaazing food! The whole experience from start to finish is great waitress is always so friendly and kind. The food can’t get better and the prices are fair for the portion size. Always a great spot to get great food.',
     rating: 4,
     vegetarian: true,
+    numComments: 0,
+    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
   },
   {
     name: 'Jon Bon Chovy',
@@ -111,10 +123,12 @@ const reviews = [
     location: '63 Pitfield Street, Hoxton, N1 6BU',
     postcode: 'N1 6BU',
     price: 12,
-    reviewer: 'John Smith',
-    comment: "Awesome, especially if you're an anchovies fan like myself.",
+    reviewer: 'Abdullahi Mosley',
+    description: "Awesome, especially if you're an anchovies fan like myself.",
     rating: 4,
     vegetarian: false,
+    numComments: 0,
+    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
   },
   {
     name: 'Robert De Nitro',
@@ -127,11 +141,13 @@ const reviews = [
     location: '40-41 Rathbone Place, W1T 1HX',
     postcode: 'W1T 1HX',
     price: 14,
-    reviewer: 'Paul Okenfold',
-    comment:
+    reviewer: 'Maria Ivanova',
+    description:
       "Enjoyable pizza, picked it mainly because of the name and it didn't dissapoint. Not the best I have ever had but still really good.",
     rating: 3,
     vegetarian: true,
+    numComments: 0,
+    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
   },
 ]
 

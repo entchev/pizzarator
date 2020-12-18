@@ -85,8 +85,8 @@ const ReviewListView = ({ history, match }) => {
         <Message variant='danger'>{error}</Message>
       ) : reviewsFiltered.length < 1 ? (
         <Message variant='secondary'>
-          You have no reviews yet. Click the "Create Review" button on
-          the right if you'd like to submit one.
+          You have no reviews yet. Click the "Create Review" button on the right
+          if you'd like to submit one.
         </Message>
       ) : (
         <Table striped bordered hover responsive className='table-sm'>
@@ -94,7 +94,7 @@ const ReviewListView = ({ history, match }) => {
             <tr>
               <th>NAME</th>
               <th>PIZZERIA</th>
-              <th>COMMENT</th>
+              <th>DESCRIPTION</th>
               <th>RATING</th>
             </tr>
           </thead>
@@ -103,7 +103,7 @@ const ReviewListView = ({ history, match }) => {
               <tr key={review._id}>
                 <td>{review.name}</td>
                 <td>{review.pizzeria}</td>
-                <td>{review.comment}</td>
+                <td>{review.description}</td>
                 <td>{review.rating}</td>
                 <td>
                   <LinkContainer to={`/user/review/${review._id}/edit`}>

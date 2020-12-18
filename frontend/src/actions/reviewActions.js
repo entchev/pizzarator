@@ -15,6 +15,9 @@ import {
   REVIEW_UPDATE_REQUEST,
   REVIEW_UPDATE_FAIL,
   REVIEW_UPDATE_SUCCESS,
+  REVIEW_COMMENT_REQUEST,
+  REVIEW_COMMENT_FAIL,
+  REVIEW_COMMENT_SUCCESS,
 } from '../constants/reviewConstants'
 
 export const listReviews = () => async (dispatch) => {
@@ -154,6 +157,42 @@ export const updateReview = (review) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: REVIEW_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const createReviewComment = (reviewId, comment) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({
+      type: REVIEW_COMMENT_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.post(`/api/reviews/${reviewId}/comments`, comment, config)
+
+    dispatch({
+      type: REVIEW_COMMENT_SUCCESS,
+    })
+  } catch (error) {
+    dispatch({
+      type: REVIEW_COMMENT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

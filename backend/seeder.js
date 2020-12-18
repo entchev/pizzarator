@@ -18,7 +18,7 @@ const importData = async () => {
 
     const createdUsers = await User.insertMany(users)
 
-    const reviewer = createdUsers[0]._id //will need amending
+    const reviewer = createdUsers[0]._id 
 
     const sampleReviews = reviews.map((review) => {
       return { ...review, user: reviewer }

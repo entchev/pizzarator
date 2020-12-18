@@ -49,19 +49,21 @@ const deleteReview = asyncHandler(async (req, res) => {
 const createReview = asyncHandler(async (req, res) => {
   const review = new Review({
     name: 'Example Pizza',
-    price: 0,
+    price: 4.99,
     user: req.user._id,
     image: '/images/sample_pizza.jpg',
     logo: '/images/sample_logo.jpg',
     website: 'https://en.wikipedia.org/wiki/Pizza',
     ingredients: 'Tomato sauce, Cheese, Peperoni',
-    pizzeria: "Bubbalio's",
+    pizzeria: 'Pizzeria Gino Sorbillo',
     location: 'Gloucester Square, London',
     postcode: 'W2 2SZ',
     rating: 3,
-    comment: 'Great tasting pizza!',
+    description: 'Great tasting pizza!',
     vegetarian: false,
     reviewer: req.user.name,
+    numComments: 0,
+    comments: [],
   })
 
   const createdReview = await review.save()
@@ -84,9 +86,11 @@ const updateReview = asyncHandler(async (req, res) => {
     location,
     postcode,
     rating,
-    comment,
+    description,
     vegetarian,
     reviewer,
+    numComments,
+    comments,
   } = req.body
 
   const review = await Review.findById(req.params.id)
@@ -102,9 +106,11 @@ const updateReview = asyncHandler(async (req, res) => {
     review.location = location
     review.postcode = postcode
     review.rating = rating
-    review.comment = comment
+    review.description = description
     review.vegetarian = vegetarian
     review.reviewer = reviewer
+    review.numComments = numComments
+    review.comments = comments
 
     const updatedReview = await review.save()
     res.json(updatedReview)
@@ -114,46 +120,49 @@ const updateReview = asyncHandler(async (req, res) => {
   }
 })
 
-// // @desc create new comment
-// // @route POST /api/comments
-// // @access Private
+// @desc Create new comment
+// @route POST /api/reviews/:id/comments
+// @access Private
 
-// const createReview = asyncHandler(async (req, res) => {
-//   const { rating, comment } = req.body
+const createComment = asyncHandler(async (req, res) => {
+  const { helpful, content } = req.body
 
-//   const review = await Review.findById(req.params.id)
+  const review = await Review.findById(req.params.id)
 
-//   if (review) {
-//     const alreadyReviewed = review.reviews.find(
-//       (r) => r.user.toString() === req.user._id.toString()
-//     )
+  if (review) {
+    const alreadyCommented = review.comments.find(
+      (r) => r.user.toString() === req.user._id.toString()
+    )
 
-//     if (alreadyReviewed) {
-//       res.status(400)
-//       throw new Error('Pizza already reviewed')
-//     }
+    if (alreadyCommented) {
+      res.status(400)
+      throw new Error('You have already left a comment')
+    }
 
-//     const review = {
-//       name: req.user.name,
-//       rating: Number(rating),
-//       comment,
-//       user: req.user._id,
-//     }
+    const newComment = {
+      name: req.user.name,
+      helpful,
+      content,
+      user: req.user._id,
+    }
 
-//     evaluation.reviews.push(review)
+    review.comments.push(newComment)
 
-//     evaluation.numReviews = evaluation.reviews.length
+    review.numComments = review.comments.length
 
-//     evaluation.rating =
-//       evaluation.reviews.reduce((acc, item) => item.rating + acc, 0) /
-//       evaluation.reviews.length
+    await review.save()
+    res.status(201).json({ message: 'Comment added' })
+  } else {
+    res.status(404)
+    throw new Error('Review not found')
+  }
+})
 
-//     await evaluation.save()
-//     res.status(201).json({ message: 'Review added' })
-//   } else {
-//     res.status(404)
-//     throw new Error('Review not found')
-//   }
-// })
-
-export { getReviews, getReviewById, createReview, updateReview, deleteReview }
+export {
+  getReviews,
+  getReviewById,
+  createReview,
+  updateReview,
+  deleteReview,
+  createComment,
+}

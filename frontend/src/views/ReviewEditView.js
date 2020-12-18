@@ -21,10 +21,12 @@ const ReviewEditView = ({ history, match }) => {
   const [postcode, setPostcode] = useState('')
   const [rating, setRating] = useState(3)
   const [price, setPrice] = useState(0)
-  const [comment, setComment] = useState('')
+  const [description, setDescription] = useState('')
   const [vegetarian, setVegetarian] = useState(false)
   const [website, setWebsite] = useState('')
   const [reviewer, setReviewer] = useState('')
+  const [numComments, setNumComments] = useState(0)
+  const [comments, setComments] = useState([])
   const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
@@ -56,10 +58,12 @@ const ReviewEditView = ({ history, match }) => {
         setPostcode(review.postcode)
         setRating(review.rating)
         setPrice(review.price)
-        setComment(review.comment)
+        setDescription(review.description)
         setVegetarian(review.vegetarian)
         setWebsite(review.website)
         setReviewer(review.reviewer)
+        setNumComments(review.numComments)
+        setComments(review.comments)
       }
     }
   }, [dispatch, history, reviewId, review, successUpdate])
@@ -101,10 +105,12 @@ const ReviewEditView = ({ history, match }) => {
         postcode,
         rating,
         price,
-        comment,
+        description,
         vegetarian,
         website,
         reviewer,
+        numComments,
+        comments,
       })
     )
   }
@@ -239,13 +245,13 @@ const ReviewEditView = ({ history, match }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='comment'>
+            <Form.Group controlId='description'>
               <Form.Label>Review text</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='Enter comment'
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                placeholder='Enter description'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
