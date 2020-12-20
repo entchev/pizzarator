@@ -7,7 +7,7 @@ const commentSchema = mongoose.Schema(
     content: { type: String, required: true },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      required: false,
+      required: true,
       ref: 'User',
     },
   },
@@ -77,7 +77,12 @@ const reviewSchema = mongoose.Schema(
     },
     numComments: {
       type: Number,
-      required: true,
+      required: false,
+      default: 0,
+    },
+    numHelpful: {
+      type: Number,
+      required: false,
       default: 0,
     },
     reviewer: {

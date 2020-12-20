@@ -7,7 +7,7 @@ import {
   reviewCreateReducer,
   reviewDeleteReducer,
   reviewUpdateReducer,
-  reviewCommentCreateReducer,
+  reviewCommentReducer,
 } from './reducers/reviewReducers'
 import { fetchCoordsReducer } from './reducers/mapReducer'
 import {
@@ -23,12 +23,12 @@ const reducer = combineReducers({
   reviewCreate: reviewCreateReducer,
   reviewDelete: reviewDeleteReducer,
   reviewUpdate: reviewUpdateReducer,
+  reviewComment: reviewCommentReducer,
   coords: fetchCoordsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
-  reviewCommentCreate: reviewCommentCreateReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

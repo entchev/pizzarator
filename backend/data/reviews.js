@@ -16,7 +16,8 @@ const reviews = [
       'The Pizza at Michele was the best I ever had. Miles better than your average Pizza Hut type of establishment.',
     vegetarian: true,
     numComments: 0,
-    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
+    numHelpful: 0,
+    comments: [],
   },
   {
     name: "Enzo Coccia's Guest Pizza",
@@ -35,7 +36,8 @@ const reviews = [
       'Excellent pizza. Menu is extensive and seasonal to a particularly high standard. Definitely fine dining. It can be expensive but worth it and they do different deals on different nights so it’s worth checking them out before you book. Highly recommended.',
     vegetarian: false,
     numComments: 0,
-    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
+    numHelpful: 0,
+    comments: [],
   },
   {
     name: 'Full Moon',
@@ -54,7 +56,8 @@ const reviews = [
       'Phenomenal experience. Top notch food, atmosphere, and wait staff. Have been here multiple times, and every time is an amazing experience all around. I always take my out of town guests here, as the food is always superb. Definitely a lifetime customer!',
     vegetarian: false,
     numComments: 0,
-    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
+    numHelpful: 0,
+    comments: [],
   },
   {
     name: 'Amerigo Vespucci',
@@ -73,7 +76,8 @@ const reviews = [
     rating: 5,
     vegetarian: true,
     numComments: 0,
-    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
+    numHelpful: 0,
+    comments: [],
   },
   {
     name: 'Toscana',
@@ -91,7 +95,8 @@ const reviews = [
     rating: 4,
     vegetarian: false,
     numComments: 0,
-    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
+    numHelpful: 0,
+    comments: [],
   },
   {
     name: 'The 8 Cheese',
@@ -110,7 +115,8 @@ const reviews = [
     rating: 4,
     vegetarian: true,
     numComments: 0,
-    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
+    numHelpful: 0,
+    comments: [],
   },
   {
     name: 'Jon Bon Chovy',
@@ -128,7 +134,8 @@ const reviews = [
     rating: 4,
     vegetarian: false,
     numComments: 0,
-    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
+    numHelpful: 0,
+    comments: [],
   },
   {
     name: 'Robert De Nitro',
@@ -147,7 +154,8 @@ const reviews = [
     rating: 3,
     vegetarian: true,
     numComments: 0,
-    comments: [{ name: 'Johny', helpful: false, content: 'micishi' }],
+    numHelpful: 0,
+    comments: [],
   },
 ]
 

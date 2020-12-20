@@ -63,6 +63,7 @@ const createReview = asyncHandler(async (req, res) => {
     vegetarian: false,
     reviewer: req.user.name,
     numComments: 0,
+    numHelpful: 0,
     comments: [],
   })
 
@@ -90,6 +91,7 @@ const updateReview = asyncHandler(async (req, res) => {
     vegetarian,
     reviewer,
     numComments,
+    numHelpful,
     comments,
   } = req.body
 
@@ -110,6 +112,7 @@ const updateReview = asyncHandler(async (req, res) => {
     review.vegetarian = vegetarian
     review.reviewer = reviewer
     review.numComments = numComments
+    review.numHelpful = numHelpful
     review.comments = comments
 
     const updatedReview = await review.save()

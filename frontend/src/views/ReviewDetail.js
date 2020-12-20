@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Image, ListGroup, Card } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card, Form, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/message'
 import Loader from '../components/loader'
@@ -13,8 +13,8 @@ import Map from '../components/Map'
 import { REVIEW_COMMENT_RESET } from '../constants/reviewConstants'
 
 const ReviewDetail = ({ match }) => {
-  const [helpful, setHelpful] = useState(true)
-  const [content, setComment] = useState('')
+  const [helpful, setHelpful] = useState(null)
+  const [content, setContent] = useState('')
 
   const dispatch = useDispatch()
 
@@ -24,15 +24,31 @@ const ReviewDetail = ({ match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  const reviewCommentCreate = useSelector((state) => state.reviewCommentCreate)
+  const reviewComment = useSelector((state) => state.reviewComment)
   const {
     success: successReviewComment,
     error: errorReviewComment,
-  } = reviewCommentCreate
+  } = reviewComment
 
   useEffect(() => {
+    if (successReviewComment) {
+      alert('Comment posted!')
+      setHelpful(null)
+      setContent('')
+      dispatch({ type: REVIEW_COMMENT_RESET })
+    }
     dispatch(listReviewDetails(match.params.id))
-  }, [dispatch, match])
+  }, [dispatch, match, successReviewComment])
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(
+      createReviewComment(match.params.id, {
+        helpful,
+        content,
+      })
+    )
+  }
 
   return (
     <>
@@ -118,10 +134,12 @@ const ReviewDetail = ({ match }) => {
               </Card>
             </Col>
           </Row>
-          {/* <Row>
+          <Row>
             <Col md={6}>
               <h2>Comments</h2>
-              {review.comments.length === 0 && <Message>No Comments</Message>}
+              {review.comments.length === 0 && (
+                <Message variant='secondary'>No Comments</Message>
+              )}
               <ListGroup variant='flush'>
                 {review.comments.map((comment) => (
                   <ListGroup.Item key={comment._id}>
@@ -131,9 +149,50 @@ const ReviewDetail = ({ match }) => {
                     <p>{comment.content}</p>
                   </ListGroup.Item>
                 ))}
+                <ListGroup.Item>
+                  <h2>Write a Comment</h2>
+                  {errorReviewComment && (
+                    <Message variant='danger'>{errorReviewComment}</Message>
+                  )}
+                  {userInfo ? (
+                    <Form onSubmit={submitHandler}>
+                      <Form.Group controlId='helpful'>
+                        <Form.Label>
+                          Did you find the review helpful?
+                        </Form.Label>
+                        <Form.Control
+                          as='select'
+                          className='mr-sm-2'
+                          custom
+                          value={helpful}
+                          onChange={(e) => setHelpful(e.target.value)}
+                        >
+                          <option value='true'>Yes</option>
+                          <option value='false'>No</option>
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group controlId='content'>
+                        <Form.Label>Comment</Form.Label>
+                        <Form.Control
+                          as='textarea'
+                          row='3'
+                          value={content}
+                          onChange={(e) => setContent(e.target.value)}
+                        ></Form.Control>
+                      </Form.Group>
+                      <Button type='submit' variant='primary'>
+                        Submit
+                      </Button>
+                    </Form>
+                  ) : (
+                    <Message>
+                      Please <Link to='/login'>sign in</Link> to write a comment
+                    </Message>
+                  )}
+                </ListGroup.Item>
               </ListGroup>
             </Col>
-          </Row> */}
+          </Row>
         </>
       )}
     </>

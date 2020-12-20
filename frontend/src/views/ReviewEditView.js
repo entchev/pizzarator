@@ -26,6 +26,7 @@ const ReviewEditView = ({ history, match }) => {
   const [website, setWebsite] = useState('')
   const [reviewer, setReviewer] = useState('')
   const [numComments, setNumComments] = useState(0)
+  const [numHelpful, setNumHelpful] = useState(0)
   const [comments, setComments] = useState([])
   const [uploading, setUploading] = useState(false)
 
@@ -63,6 +64,7 @@ const ReviewEditView = ({ history, match }) => {
         setWebsite(review.website)
         setReviewer(review.reviewer)
         setNumComments(review.numComments)
+        setNumHelpful(review.numHelpful)
         setComments(review.comments)
       }
     }
@@ -110,6 +112,7 @@ const ReviewEditView = ({ history, match }) => {
         website,
         reviewer,
         numComments,
+        numHelpful,
         comments,
       })
     )
