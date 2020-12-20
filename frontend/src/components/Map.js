@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import Message from '../components/message'
+import Message from './Message'
 import Loader from '../components/loader'
 import { useDispatch, useSelector } from 'react-redux'
 import {

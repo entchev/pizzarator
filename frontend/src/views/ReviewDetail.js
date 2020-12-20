@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Form, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import Message from '../components/message'
+import Message from '../components/Message'
 import Loader from '../components/loader'
 import {
   listReviewDetails,
@@ -13,8 +13,8 @@ import Map from '../components/Map'
 import { REVIEW_COMMENT_RESET } from '../constants/reviewConstants'
 
 const ReviewDetail = ({ match }) => {
-  const [helpful, setHelpful] = useState(null)
-  const [content, setContent] = useState('')
+  const [helpful, setHelpful] = useState(true)
+  const [content, setContent] = useState('...')
 
   const dispatch = useDispatch()
 
@@ -176,6 +176,7 @@ const ReviewDetail = ({ match }) => {
                         <Form.Control
                           as='textarea'
                           row='3'
+                          placeholder='Enter comment'
                           value={content}
                           onChange={(e) => setContent(e.target.value)}
                         ></Form.Control>

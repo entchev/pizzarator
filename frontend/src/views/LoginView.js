@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/message'
+import Message from '../components/Message'
 import Loader from '../components/loader'
 import FormContainer from '../components/FormContainer'
 import { login } from '../actions/userActions'
@@ -30,9 +30,9 @@ const LoginView = ({ location, history }) => {
 
   return (
     <FormContainer>
-        <h1>Sign In</h1>
-        {error && <Message variant='danger'>{error}</Message> }
-        {loading && <Loader/> }
+      <h1>Sign In</h1>
+      {error && <Message variant='danger'>{error}</Message>}
+      {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>

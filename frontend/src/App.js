@@ -24,6 +24,7 @@ const App = () => {
           <Route path='/user/:id/reviewList' component={ReviewDetail} />
           <Route path='/user/reviewlist' component={ReviewListView} />
           <Route path='/user/review/:id/edit' component={ReviewEditView} />
+          <Route path='/search/:keyword' component={MainView} />
           <Route path='/' component={MainView} exact />
         </Container>
       </main>

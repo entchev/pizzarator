@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/message'
+import Message from '../components/Message'
 import Loader from '../components/loader'
 import FormContainer from '../components/FormContainer'
 import { listReviewDetails, updateReview } from '../actions/reviewActions'
@@ -251,7 +251,8 @@ const ReviewEditView = ({ history, match }) => {
             <Form.Group controlId='description'>
               <Form.Label>Review text</Form.Label>
               <Form.Control
-                type='text'
+                type='textarea'
+                row='3'
                 placeholder='Enter description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

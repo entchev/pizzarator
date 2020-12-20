@@ -6,7 +6,16 @@ import Review from '../models/reviewModel.js'
 // @access Public
 
 const getReviews = asyncHandler(async (req, res) => {
-  const reviews = await Review.find({})
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      }
+    : {}
+
+  const reviews = await Review.find({ ...keyword })
 
   res.json(reviews)
 })

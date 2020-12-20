@@ -40,3 +40,7 @@ h3 {
 .map-link {
   font-weight: 600;
 }
+
+#basic-navbar-nav {
+  margin-left: 130px;
+}

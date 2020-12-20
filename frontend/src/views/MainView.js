@@ -2,19 +2,21 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Review from '../components/Review'
-import Message from '../components/message'
+import Message from '../components/Message'
 import Loader from '../components/loader'
 import { listReviews } from '../actions/reviewActions'
 
-const MainView = () => {
+const MainView = ({ match }) => {
+  const keyword = match.params.keyword
+
   const dispatch = useDispatch()
 
   const reviewList = useSelector((state) => state.reviewList)
   const { loading, error, reviews } = reviewList
 
   useEffect(() => {
-    dispatch(listReviews())
-  }, [dispatch])
+    dispatch(listReviews(keyword))
+  }, [dispatch, keyword])
 
   return (
     <>

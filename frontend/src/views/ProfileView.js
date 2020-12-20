@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/message'
+import Message from '../components/Message'
 import Loader from '../components/loader'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
@@ -99,6 +99,6 @@ const ProfileView = ({ location, history }) => {
       </Col>
     </Row>
   )
-} 
+}
 
 export default ProfileView

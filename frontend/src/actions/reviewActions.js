@@ -20,11 +20,11 @@ import {
   REVIEW_COMMENT_SUCCESS,
 } from '../constants/reviewConstants'
 
-export const listReviews = () => async (dispatch) => {
+export const listReviews = (keyword = '') => async (dispatch) => {
   try {
     dispatch({ type: REVIEW_LIST_REQUEST })
 
-    const { data } = await axios.get('/api/reviews')
+    const { data } = await axios.get(`/api/reviews?keyword=${keyword}`)
 
     dispatch({
       type: REVIEW_LIST_SUCCESS,
