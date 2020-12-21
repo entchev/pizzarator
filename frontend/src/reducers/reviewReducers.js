@@ -20,6 +20,9 @@ import {
   REVIEW_COMMENT_SUCCESS,
   REVIEW_COMMENT_FAIL,
   REVIEW_COMMENT_RESET,
+  REVIEW_TOP_REQUEST,
+  REVIEW_TOP_SUCCESS,
+  REVIEW_TOP_FAIL,
 } from '../constants/reviewConstants'
 
 export const reviewListReducer = (state = { reviews: [] }, action) => {
@@ -27,7 +30,12 @@ export const reviewListReducer = (state = { reviews: [] }, action) => {
     case REVIEW_LIST_REQUEST:
       return { loading: true, reviews: [] }
     case REVIEW_LIST_SUCCESS:
-      return { loading: false, reviews: action.payload }
+      return {
+        loading: false,
+        reviews: action.payload.reviews,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      }
     case REVIEW_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:
@@ -104,6 +112,19 @@ export const reviewCommentReducer = (state = {}, action) => {
       return { loading: false, error: action.payload }
     case REVIEW_COMMENT_RESET:
       return {}
+    default:
+      return state
+  }
+}
+
+export const reviewTopRatedReducer = (state = { reviews: [] }, action) => {
+  switch (action.type) {
+    case REVIEW_TOP_REQUEST:
+      return { loading: true, reviews: [] }
+    case REVIEW_TOP_SUCCESS:
+      return { loading: false, reviews: action.payload }
+    case REVIEW_TOP_FAIL:
+      return { loading: false, error: action.payload }
     default:
       return state
   }

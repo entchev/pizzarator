@@ -8,6 +8,7 @@ import {
   reviewDeleteReducer,
   reviewUpdateReducer,
   reviewCommentReducer,
+  reviewTopRatedReducer,
 } from './reducers/reviewReducers'
 import { fetchCoordsReducer } from './reducers/mapReducer'
 import {
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   reviewDelete: reviewDeleteReducer,
   reviewUpdate: reviewUpdateReducer,
   reviewComment: reviewCommentReducer,
+  reviewTopRated: reviewTopRatedReducer,
   coords: fetchCoordsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
