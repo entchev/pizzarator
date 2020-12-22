@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/loader'
+import Meta from '../components/Meta'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 
@@ -49,6 +51,7 @@ const ProfileView = ({ location, history }) => {
 
   return (
     <Row>
+      <Meta title='Your Profile' />
       <Col md={3}>
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}
@@ -92,9 +95,16 @@ const ProfileView = ({ location, history }) => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <Button type='submit' variant='primary'>
+          <Button
+            className='profile-submit-button'
+            type='submit'
+            variant='primary'
+          >
             Update
           </Button>
+          <Link to='/' className='btn btn-light'>
+            Back to Home
+          </Link>
         </Form>
       </Col>
     </Row>

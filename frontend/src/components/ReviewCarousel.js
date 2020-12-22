@@ -21,7 +21,7 @@ const ReviewCarousel = () => {
   ) : error ? (
     <Message variant='danger'>{error}</Message>
   ) : (
-    <Carousel pause='hover' className='bg-dark'>
+    <Carousel pause='hover' prevIcon='' nextIcon='' className='bg-dark'>
       {reviews.map((review) => (
         <Carousel.Item key={review._id}>
           <Link to={`/review/${review._id}`}>

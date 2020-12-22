@@ -5,6 +5,7 @@ import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/loader'
+import Meta from '../components/Meta'
 import FormContainer from '../components/FormContainer'
 import { listReviewDetails, updateReview } from '../actions/reviewActions'
 import { REVIEW_UPDATE_RESET } from '../constants/reviewConstants'
@@ -120,6 +121,7 @@ const ReviewEditView = ({ history, match }) => {
 
   return (
     <>
+      <Meta title='Review Editor' />
       <Link to='/user/reviewlist' className='btn btn-light my-3'>
         Go Back
       </Link>

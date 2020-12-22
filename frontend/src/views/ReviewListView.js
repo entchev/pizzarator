@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
+import { Link } from 'react-router-dom'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/loader'
+import Meta from '../components/Meta'
 import {
   listReviews,
   createReview,
@@ -65,14 +67,22 @@ const ReviewListView = ({ history, match }) => {
 
   return (
     <>
+      <Meta title='My Reviews' />
       <Row className='align-items-center'>
         <Col>
           <h1>Reviews</h1>
         </Col>
         <Col className='text-right'>
-          <Button className='my-3' onClick={createReviewHandler}>
+          <Button
+            id='create-review-button'
+            className='my-3'
+            onClick={createReviewHandler}
+          >
             <i className='fas fa-plus'></i> Create Review
           </Button>
+          <Link to='/' className='btn btn-light'>
+            Go Back
+          </Link>
         </Col>
       </Row>
       {loadingDelete && <Loader />}

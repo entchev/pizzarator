@@ -7,6 +7,7 @@ import Message from '../components/Message'
 import Loader from '../components/loader'
 import Paginate from '../components/Paginate'
 import ReviewCarousel from '../components/ReviewCarousel'
+import Meta from '../components/Meta'
 import { listReviews } from '../actions/reviewActions'
 
 const MainView = ({ match }) => {
@@ -28,7 +29,14 @@ const MainView = ({ match }) => {
 
   return (
     <>
-      {!keyword && <ReviewCarousel />}
+      <Meta />
+      {!keyword ? (
+        <ReviewCarousel />
+      ) : (
+        <Link to='/' className='btn btn-light'>
+          Go Back
+        </Link>
+      )}
       {!userInfo ? (
         <h4 className='welcome-text'>
           Love pizza as much as we do?{' '}

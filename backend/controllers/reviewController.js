@@ -6,6 +6,9 @@ import Review from '../models/reviewModel.js'
 // @access Public
 
 const getReviews = asyncHandler(async (req, res) => {
+  const pageSize = 8
+  const page = Number(req.query.pageNumber) || 1
+
   const keyword = req.query.keyword
     ? {
         name: {
@@ -15,9 +18,12 @@ const getReviews = asyncHandler(async (req, res) => {
       }
     : {}
 
+  const count = await Review.countDocuments({ ...keyword })
   const reviews = await Review.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
 
-  res.json(reviews)
+  res.json({ reviews, page, pages: Math.ceil(count / pageSize) })
 })
 
 // @desc fetch single review
@@ -161,6 +167,9 @@ const createComment = asyncHandler(async (req, res) => {
     review.comments.push(newComment)
 
     review.numComments = review.comments.length
+    if (newComment.helpful === true) {
+      review.numHelpful += 1
+    }
 
     await review.save()
     res.status(201).json({ message: 'Comment added' })
@@ -170,8 +179,19 @@ const createComment = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc Get top rated reviews
+// @route POST /api/reviews/top
+// @access Private
+
+const getTopReviews = asyncHandler(async (req, res) => {
+  const reviews = await Review.find({}).sort({ rating: -1 }).limit(3)
+
+  res.json(reviews)
+})
+
 export {
   getReviews,
+  getTopReviews,
   getReviewById,
   createReview,
   updateReview,

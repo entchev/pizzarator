@@ -5,6 +5,7 @@ import { Row, Col, Image, ListGroup, Card, Form, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/loader'
+import Meta from '../components/Meta'
 import {
   listReviewDetails,
   createReviewComment,
@@ -61,6 +62,7 @@ const ReviewDetail = ({ match }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
+          <Meta title={review.name} />
           <Row>
             <Col md={4}>
               <Image src={review.image} alt={review.name} fluid></Image>
@@ -69,6 +71,12 @@ const ReviewDetail = ({ match }) => {
                   <ListGroup variant='flush'>
                     <ListGroup.Item>
                       <h3 className='comment'>"{review.description}"</h3>
+                      {review.numComments > 0 && (
+                        <h4 className='helpful-count'>
+                          {review.numHelpful} out of {review.numComments} people
+                          found this review helpful
+                        </h4>
+                      )}
                     </ListGroup.Item>
                   </ListGroup>
                 </Card>
