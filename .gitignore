@@ -12,7 +12,7 @@ temp_creds.js
 /coverage
 
 # production
-/build
+/frontend/build
 
 # misc
 /frontend/src/creds.js

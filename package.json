@@ -26,13 +26,13 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/entchev/pizzarator.git"
   },
-  "author": "",
+  "author": "Denis Entchev",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/entchev/pizzarator/issues"
