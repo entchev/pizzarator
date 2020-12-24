@@ -1,5 +1,5 @@
 {
-  "name": "pizzarator",
+  "name": "frontend",
   "proxy": "http://127.0.0.1:5000",
   "version": "0.1.0",
   "private": true,
@@ -31,8 +31,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -46,10 +45,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "server.js",
-  "devDependencies": {},
-  "author": "",
-  "license": "ISC"
+  }
 }
