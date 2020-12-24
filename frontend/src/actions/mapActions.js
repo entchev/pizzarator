@@ -10,7 +10,7 @@ export const fetchCoords = (postcode) => async (dispatch) => {
     dispatch({ type: FETCH_COORDS_REQUEST })
 
     const { data } = await axios.get(
-      `http://api.postcodes.io/postcodes/${postcode}`
+      `https://api.postcodes.io/postcodes/${postcode}`
     )
 
     dispatch({

@@ -45,7 +45,6 @@ const Map = ({ postcode, logo, website }) => {
   })
 
   const [selected, setSelected] = useState('')
-  //   const [markers, setMarkers] = useState([])
 
   if (loadError) return 'Error loading maps'
   if (!isLoaded) return 'Loading Maps'
